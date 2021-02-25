@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+  <context defaultModelType="flat" id="mybatis-builder" targetRuntime="MyBatis3Kotlin">
+    <property name="javaFileEncoding" value="UTF-8"/>
+    <property name="autoDelimitKeywords" value="true"/>
+
+    <jdbcConnection connectionURL="jdbc:filemaker://test-fms/タスク" driverClass="com.filemaker.jdbc.Driver"
+                    password="sample123" userId="admin"/>
+
+    <javaTypeResolver>
+      <property name="useJSR310Types" value="true"/>
+    </javaTypeResolver>
+
+    <javaModelGenerator targetPackage="quo.vadis.megasys.sample.db" targetProject="src/generated/kotlin" >
+      <property name="trimStrings" value="true"/>
+    </javaModelGenerator>
+
+    <javaClientGenerator targetPackage="quo.vadis.megasys.sample.db" targetProject="src/generated/kotlin" type="XMLMAPPER" />
+
+    <table tableName="%" delimitIdentifiers="true" delimitAllColumns="true">
+      <generatedKey column="主キー" identity="true" sqlStatement="JDBC"/>
+    </table>
+
+  </context>
+</generatorConfiguration>

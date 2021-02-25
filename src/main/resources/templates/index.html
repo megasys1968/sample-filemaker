@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="jp" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>FileMaker Viewer</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+          crossorigin="anonymous"></script>
+</head>
+<body class="container">
+<form class="row align-items-center g-2" action="/" method="post">
+  <div class="col-auto">
+    <label for="host" class="visually-hidden">ホスト</label>
+    <input type="text" class="form-control" id="host" name="host" aria-describedby="hostHelp" placeholder="ホスト">
+  </div>
+  <div class="col-auto">
+    <label for="database" class="visually-hidden">データベース</label>
+    <input type="text" class="form-control" id="database" name="database" aria-describedby="databaseHelp" placeholder="データベース">
+  </div>
+  <div class="col-auto">
+    <label for="user" class="visually-hidden">ユーザ名</label>
+    <input type="text" class="form-control" id="user" name="user" placeholder="ユーザ名">
+  </div>
+  <div class="col-auto">
+    <label for="password" class="visually-hidden">パスワード</label>
+    <input type="password" class="form-control" id="password" name="password" placeholder="パスワード">
+  </div>
+  <div class="col-auto">
+    <button type="submit" class="btn btn-primary col-auto">実行</button>
+  </div>
+</form>
+
+<div class="row" th:each="tableSpec : ${tableSpecs}">
+  <table class="table caption-top">
+    <caption th:text="${tableSpec.key}">テーブル名</caption>
+    <thead>
+    <tr>
+      <th scope="col">カラム名</th>
+      <th scope="col">型</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!--/*-->
+    <tr>
+      <td>カラム1</td>
+      <td>Text</td>
+    </tr>
+    <tr>
+      <td>カラム2</td>
+      <td>Number</td>
+    </tr>
+    <!--/*-->
+    <!--/*/
+    <tr th:each="columnSpec : ${tableSpec.value}">
+      <td th:text="${columnSpec.name}"></td>
+      <td th:text="${columnSpec.type}"></td>
+    </tr>
+    /*/-->
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

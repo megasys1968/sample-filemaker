@@ -1,0 +1,36 @@
+spring:
+  datasource:
+    url: jdbc:filemaker://test-fms/タスク
+    driver-class-name: quo.vadis.megasys.sample.Driver
+    username: admin
+    password: sample123
+    hikari:
+      connection-test-query: SELECT p.* FROM FileMaker_Tables p
+
+---
+spring:
+  config:
+    activate:
+      on-profile: hibernate
+  jpa:
+    properties:
+      hibernate:
+        dialect: quo.vadis.megasys.sample.FileMakerDialect
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+        type: TRACE
+---
+spring:
+  config:
+    activate:
+      on-profile: mybatis
+logging:
+  level:
+    quo:
+      vadis:
+        megasys:
+          sample:
+            db: DEBUG
